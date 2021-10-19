@@ -1,0 +1,54 @@
+[gd_scene format=2]
+
+[node name="Rest" type="CanvasLayer"]
+pause_mode = 2
+
+[node name="ResultPanel" type="Panel" parent="."]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 168.0
+margin_bottom = 144.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ResultPanel"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 133.0
+margin_bottom = 30.0
+text = "Game Paused"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResetButton" type="Button" parent="ResultPanel"]
+margin_left = 32.0
+margin_top = 72.0
+margin_right = 114.0
+margin_bottom = 92.0
+text = "New Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Home" type="Button" parent="ResultPanel"]
+margin_left = 32.0
+margin_top = 104.0
+margin_right = 114.0
+margin_bottom = 124.0
+text = "Home"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" type="Button" parent="ResultPanel"]
+margin_left = 32.0
+margin_top = 40.0
+margin_right = 112.0
+margin_bottom = 60.0
+text = "Resume"
+__meta__ = {
+"_edit_use_anchors_": false
+}

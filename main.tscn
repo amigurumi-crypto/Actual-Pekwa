@@ -1,0 +1,186 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://board.gd" type="Script" id=1]
+[ext_resource path="res://assets/Cards/cardBack_blue1.png" type="Texture" id=2]
+[ext_resource path="res://assets/pause.png" type="Texture" id=3]
+[ext_resource path="res://Rest.tscn" type="PackedScene" id=4]
+
+[node name="main" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="PauseButton" type="TextureButton" parent="."]
+pause_mode = 2
+margin_left = 64.0
+margin_right = 128.0
+margin_bottom = 64.0
+texture_normal = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player1" type="Node2D" parent="."]
+position = Vector2( 256, 424 )
+
+[node name="Label" type="Label" parent="Player1"]
+margin_top = -16.0
+margin_right = 112.0
+margin_bottom = 15.0
+text = "Cards left: 13
+Last played: none"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player2" type="Node2D" parent="."]
+position = Vector2( 96, 192 )
+
+[node name="Label" type="Label" parent="Player2"]
+margin_left = -48.0
+margin_right = 64.0
+margin_bottom = 31.0
+text = "Cards left: 13
+Last played: none"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player3" type="Node2D" parent="."]
+position = Vector2( 320, 64 )
+
+[node name="Label" type="Label" parent="Player3"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Cards left: 13
+Last played: none"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player4" type="Node2D" parent="."]
+position = Vector2( 992, 192 )
+
+[node name="Label" type="Label" parent="Player4"]
+margin_left = -104.0
+margin_right = 8.0
+margin_bottom = 31.0
+text = "Cards left: 13
+Last played: none"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayingField" type="Node2D" parent="."]
+
+[node name="Sprite2" type="Sprite" parent="PlayingField"]
+position = Vector2( 560, 140 )
+rotation = 1.5708
+scale = Vector2( 0.458946, 0.5 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Sprite3" type="Sprite" parent="PlayingField"]
+position = Vector2( 560, 204 )
+rotation = 1.5708
+scale = Vector2( 0.454646, 0.5 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Sprite4" type="Sprite" parent="PlayingField"]
+position = Vector2( 560, 268 )
+rotation = 1.5708
+scale = Vector2( 0.454646, 0.5 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Sprite5" type="Sprite" parent="PlayingField"]
+position = Vector2( 560, 332 )
+rotation = 1.5708
+scale = Vector2( 0.454646, 0.5 )
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="PassButton" type="Button" parent="."]
+margin_left = 440.0
+margin_top = 416.0
+margin_right = 481.0
+margin_bottom = 436.0
+text = "Pass"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="soundFxTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="GameEnd" type="CanvasLayer" parent="."]
+
+[node name="ResultPanel" type="Panel" parent="GameEnd"]
+visible = false
+margin_left = 432.0
+margin_top = 208.0
+margin_right = 584.0
+margin_bottom = 352.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GameEnd/ResultPanel"]
+margin_left = 24.0
+margin_top = 16.0
+margin_right = 127.0
+margin_bottom = 81.0
+text = "1st  place: Right
+2nd place: Right
+3rd  place: Right
+4th  place: Right"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResetButton" type="Button" parent="GameEnd/ResultPanel"]
+margin_left = 32.0
+margin_top = 112.0
+margin_right = 114.0
+margin_bottom = 132.0
+text = "Play Again"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Home" type="Button" parent="GameEnd/ResultPanel"]
+margin_left = 32.0
+margin_top = 88.0
+margin_right = 114.0
+margin_bottom = 108.0
+text = "Home"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rest" parent="." instance=ExtResource( 4 )]
+
+[node name="ResultPanel" parent="Rest" index="0"]
+visible = false
+margin_left = 432.0
+margin_top = 208.0
+margin_right = 584.0
+margin_bottom = 352.0
+[connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]
+[connection signal="pressed" from="PassButton" to="." method="_on_PassButton_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="soundFxTimer" to="." method="_on_soundFxTimer_timeout"]
+[connection signal="pressed" from="GameEnd/ResultPanel/ResetButton" to="." method="_on_ResetButton_pressed"]
+[connection signal="pressed" from="GameEnd/ResultPanel/Home" to="." method="_on_Home_pressed"]
+[connection signal="pressed" from="Rest/ResultPanel/ResetButton" to="." method="_on_ResetButton_pressed"]
+[connection signal="pressed" from="Rest/ResultPanel/Home" to="." method="_on_Home_pressed"]
+[connection signal="pressed" from="Rest/ResultPanel/Resume" to="." method="_on_Resume_pressed"]
+
+[editable path="Rest"]
